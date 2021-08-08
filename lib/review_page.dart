@@ -26,18 +26,7 @@ class _ReviewPageState extends State<ReviewPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-  }
-
-  FutureOr onGoBack(dynamic value) {
-    Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (BuildContext context) => ChangeNotifierProvider.value(
-                value: DetailProviders(id: widget.listRestaurants.id),
-                child: this.widget)));
-
   }
 
   @override
@@ -60,18 +49,6 @@ class _ReviewPageState extends State<ReviewPage> {
             padding: const EdgeInsets.all(8.0),
             child: Image.network(imgUrl),
           ),
-          IconButton(
-            icon: Icon(Icons.restart_alt, color: Colors.black,),
-            onPressed: (){
-              print("reassemble");
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => ChangeNotifierProvider.value(
-                          value: DetailProviders(id: widget.listRestaurants.id),
-                          child: this.widget)));
-            },
-          )
         ],
         backgroundColor: Theme.of(context).canvasColor,
       ),
@@ -120,7 +97,6 @@ class _ReviewPageState extends State<ReviewPage> {
                 child: CircularProgressIndicator(),
               );
             }
-
           }
         ),
       ),
@@ -129,10 +105,6 @@ class _ReviewPageState extends State<ReviewPage> {
           Navigator.push(
             context,
             PageRouteBuilder(
-              // pageBuilder: (context, primary, secondary) => ChangeNotifierProvider(
-              //   create: (BuildContext context)  => DetailProviders(id: id),
-              //   child: AddReviewPage(listRestaurants: widget.listRestaurants,),
-              // ),
               pageBuilder: (context, _, __) => ChangeNotifierProvider.value(
                 value: DetailProviders(id: widget.listRestaurants.id),
                 child: AddReviewPage(
@@ -153,10 +125,10 @@ class _ReviewPageState extends State<ReviewPage> {
             )
           );
         },
-        child: Icon(Icons.add),
+        backgroundColor: Color(0xff89a66b),
+        child: Icon(Icons.note_add_outlined),
+        tooltip: "Tambah Review",
       ),
     );
   }
-
-
 }

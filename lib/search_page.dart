@@ -126,18 +126,21 @@ class _SearchPageState extends State<SearchPage> {
                               width: 80,
                               child: Hero(
                                 tag: 'RestoImage${items[index].name}',
-                                child: Image.network(
-                                  "https://restaurant-api.dicoding.dev/images/medium/${items[index].pictureId}",
-                                  fit: BoxFit.cover,
-                                  errorBuilder: (context, object, stackTrace) {
-                                    return Container(
-                                      color: Color(0xff6c6c6c),
-                                      height: 80,
-                                      child: Center(
-                                        child: Icon(Icons.error_outline),
-                                      ),
-                                    );
-                                  },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  child: Image.network(
+                                    "https://restaurant-api.dicoding.dev/images/medium/${items[index].pictureId}",
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (context, object, stackTrace) {
+                                      return Container(
+                                        color: Color(0xff6c6c6c),
+                                        height: 80,
+                                        child: Center(
+                                          child: Icon(Icons.error_outline),
+                                        ),
+                                      );
+                                    },
+                                  ),
                                 ),
                               ),
                             ),
@@ -150,7 +153,7 @@ class _SearchPageState extends State<SearchPage> {
                                   child: DetailPage(listRestaurants: items[index]))
                               ));
                             },
-                            trailing: Text("\u2605 ${items[index].rating.toString()}"),
+                            trailing: Text("\u2605 ${items[index].rating.toString()}/5.0"),
                             isThreeLine: true,
                           );
                         }

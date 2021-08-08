@@ -124,80 +124,82 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
       body: ChangeNotifierProvider(
         create: (BuildContext context) => MainProviders(),
         child: Center(
-          child: SingleChildScrollView(
-            controller: _scrollController,
-            child: Consumer<MainProviders>(
-              builder: (context, snapshot, _) {
-                if (snapshot.state == ResultState.HasData) {
-                  restaurants = snapshot.result.restaurants;
-                  return ListView(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    children: List.generate(restaurants.length, (index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
-                        child: RestaurantCard(
-                          listRestaurants: restaurants[index],
-                        ),
-                      );
-                    }),
-                  );
-                } else {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
-                    child: ListView(
+          child: Scrollbar(
+            child: SingleChildScrollView(
+              controller: _scrollController,
+              child: Consumer<MainProviders>(
+                builder: (context, snapshot, _) {
+                  if (snapshot.state == ResultState.HasData) {
+                    restaurants = snapshot.result.restaurants;
+                    return ListView(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      children: List.generate(5, (index) {
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Shimmer.fromColors(
-                              baseColor: Color(0x1F000000),
-                              highlightColor: Color(0x66000000),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: 200,
-                                decoration: BoxDecoration(
-                                  color: Colors.black,
-                                  borderRadius: BorderRadius.all(Radius.circular(15))
-                                )
-                              ),
-                            ),
-                            SizedBox(height: 12,),
-                            Shimmer.fromColors(
-                              baseColor: Color(0x1F000000),
-                              highlightColor: Color(0x66000000),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: 20,
-                                decoration: BoxDecoration(
-                                  color: Colors.black,
-                                  borderRadius: BorderRadius.all(Radius.circular(15))
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 12,),
-                            Shimmer.fromColors(
-                              baseColor: Color(0x1F000000),
-                              highlightColor: Color(0x66000000),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                height: 20,
-                                decoration: BoxDecoration(
-                                  color: Colors.black,
-                                  borderRadius: BorderRadius.all(Radius.circular(15))
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 24,)
-                          ],
+                      children: List.generate(restaurants.length, (index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                          child: RestaurantCard(
+                            listRestaurants: restaurants[index],
+                          ),
                         );
                       }),
-                    )
-                  );
+                    );
+                  } else {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+                      child: ListView(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        children: List.generate(5, (index) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Shimmer.fromColors(
+                                baseColor: Color(0x1F000000),
+                                highlightColor: Color(0x66000000),
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 200,
+                                  decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.all(Radius.circular(15))
+                                  )
+                                ),
+                              ),
+                              SizedBox(height: 12,),
+                              Shimmer.fromColors(
+                                baseColor: Color(0x1F000000),
+                                highlightColor: Color(0x66000000),
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 20,
+                                  decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.all(Radius.circular(15))
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 12,),
+                              Shimmer.fromColors(
+                                baseColor: Color(0x1F000000),
+                                highlightColor: Color(0x66000000),
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width * 0.3,
+                                  height: 20,
+                                  decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.all(Radius.circular(15))
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 24,)
+                            ],
+                          );
+                        }),
+                      )
+                    );
+                  }
                 }
-              }
+              ),
             ),
           ),
         ),
@@ -207,12 +209,9 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
           _scrollController.animateTo(
             0, duration: Duration(seconds: 2), curve: Curves.easeInOutCubic);
         },
-        child: Icon(Icons.arrow_upward),
-        backgroundColor: Color(0xff89a66b),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10))
-        ),
-        elevation: 1,
+        child: Icon(Icons.arrow_upward, color: Color(0xff89a66b)),
+        backgroundColor: Colors.white,
+        elevation: 2,
       ),
     );
   }

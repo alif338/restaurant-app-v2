@@ -44,13 +44,13 @@ class _RestaurantCardState extends State<RestaurantCard> {
                 Hero(
                   tag: 'RestoImage${widget.listRestaurants.name}',
                   child: Card(
-                    elevation: 3,
+                    elevation: 2,
                     shape: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
                       borderSide: BorderSide.none
                     ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
                       child: Image.network(
                         "https://restaurant-api.dicoding.dev/images/medium/${widget.listRestaurants.pictureId}",
                         height: 180,
@@ -117,7 +117,7 @@ class _RestaurantCardState extends State<RestaurantCard> {
               onTap: (){
                 print('FAVORITE ${widget.listRestaurants.name}');
               },
-              child: Icon(Icons.favorite_border_sharp, color: Colors.white,size: 32,)
+              child: Icon(Icons.favorite_border_sharp, color: Colors.white,size: 25,)
             )
           ),
         ),

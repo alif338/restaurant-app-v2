@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:restaurant_app/data/model/list_restaurant.dart';
 import 'package:restaurant_app/data/providers/detail_providers.dart';
 import 'package:restaurant_app/review_page.dart';
+import 'package:restaurant_app/utils/fluttertoast.dart';
 
 import 'detail_page.dart';
 
@@ -151,6 +152,7 @@ class _AddReviewPageState extends State<AddReviewPage> {
                               //     create: (context) => DetailProviders(id: id),
                               //     child: DetailPage(listRestaurants: widget.listRestaurants))
                               // ));
+                              showToast(message: "Berhasil menambahkan review");
                               Navigator.of(context).pop();
                               Navigator.of(context).pop();
                               Navigator.pop(context);
